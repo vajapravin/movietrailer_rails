@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Edit', edit_movie_path(@movie) %> | <%= link_to 'Back', movies_path %>
+
+<p>
+  <h1><%= @movie.title %></h1>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @movie.year %>
+</p>
+
+<p> 
+	<h2>Characters</h2>
+	<div class="row">
+	  <% @movie.characters.each do |character| %>
+	    <div class="col-xs-4">
+	      <div>
+	      <span><%= character.name %></span>
+	      <div><%= image_tag character.photo_url, size: "100x100" %></div>
+	      <%= link_to 'Show', character %> | <%= link_to 'Edit', edit_character_path(character) %> | <%= link_to 'Destroy', character, method: :delete, data: { confirm: 'Are you sure?' } %>
+	      <br>
+	      <%= character.movie.title rescue "" %>
+	      </div>      
+	    </div>
+	  <% end %>
+	</div>
+	<br>
+</p>
+
+<p> 
+	<h2>Trailers</h2>
+	<div class="row">
+	  <% @movie.trailers.each do |trailer| %>
+	    <div class="col-xs-4">
+	      <div>
+	      <span><%= link_to trailer.title, "/trailers/#{trailer.id}" %></span>
+	      <br><%= trailer.movie.title rescue "" %>
+	      <%= link_to 'Show', trailer %> | <%= link_to 'Edit', edit_trailer_path(trailer) %> | <%= link_to 'Destroy', trailer, method: :delete, data: { confirm: 'Are you sure?' } %>
+	      <br>
+	      </div>      
+	    </div>
+	  <% end %>
+	</div>
+	<br>
+</p>
+
+<p>
+	<div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0">
+	  <iframe id="ytplayer" type="text/html" width="650" height="350" src="<%="#{@movie.poster_url}?autoplay=0"%>" frameborder="0"/>
+	</div>
+</p>

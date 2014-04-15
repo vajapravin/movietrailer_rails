@@ -1,0 +1,13 @@
+<h1>Listing trailers</h1>
+<div class="row">
+  <% @trailers.each do |trailer| %>
+    <div class="col-xs-12">
+      <span><h3><%= trailer.title %></h3></span>
+      <br><%= trailer.movie.title rescue "" %>
+      <%= link_to 'Show', trailer %> | <%= link_to 'Edit', edit_trailer_path(trailer) %> | <%= link_to 'Destroy', trailer, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
+</div>
+<br>
+
+<%= link_to 'New Trailer', new_trailer_path %>

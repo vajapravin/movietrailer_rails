@@ -1,0 +1,30 @@
+<%= form_for(@character) do |f| %>
+  <% if @character.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@character.errors.count, "error") %> prohibited this movies_character from being saved:</h2>
+
+      <ul>
+      <% @character.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :movie_id %><br>
+    <%= f.select :movie_id,  options_for_select( Movie.all.map {|movie| [movie.title, movie.id]}, selected: @character.movie_id ), {prompt: "Select Movie"}, {class: "form-control", autofocus: true, required: true } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control", required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :photo_url %><br>
+    <%= f.text_field :photo_url, class: "form-control", required: true %>
+  </div>
+  <div class="actions">
+    <%= f.submit :save, class: "btn btn-primary" %>
+    <%= link_to 'Back', characters_path, class: "btn btn-default" %>
+  </div>
+<% end %>

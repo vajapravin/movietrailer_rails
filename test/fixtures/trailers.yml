@@ -4,7 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  title      :string(255)
-#  embed_url  :text
+#  embed_url  :string(255)
+#  movie_id   :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
@@ -13,8 +14,10 @@
 
 one:
   title: MyString
-  embed_url: MyText
+  embed_url: MyString
+  movie_id: 1
 
 two:
   title: MyString
-  embed_url: MyText
+  embed_url: MyString
+  movie_id: 1

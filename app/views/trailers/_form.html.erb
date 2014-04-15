@@ -1,0 +1,30 @@
+<%= form_for(@trailer) do |f| %>
+  <% if @trailer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trailer.errors.count, "error") %> prohibited this trailer from being saved:</h2>
+
+      <ul>
+      <% @trailer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :movie_id %><br>
+    <%= f.select :movie_id,  options_for_select( Movie.all.map {|movie| [movie.title, movie.id]}, selected: @trailer.movie_id ), {prompt: "Select Movie"}, {class: "form-control", autofocus: true, required: true } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, class: "form-control", required: true, placehoder: "Title" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :embed_url %><br>
+    <%= f.text_field :embed_url, class: "form-control", required: true, placehoder: "Embed Url" %>
+  </div>
+  <div class="actions">
+    <%= f.submit :save, class: "btn btn-primary" %>
+    <%= link_to 'Back', trailers_path, class: "btn btn-default" %>
+  </div>
+<% end %>

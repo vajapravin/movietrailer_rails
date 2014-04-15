@@ -1,5 +1,9 @@
 MovieTrailer::Application.routes.draw do
+  resources :comments
+  resources :trailers
   root 'movies#index'
+  resources :movies
+  resources :characters
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

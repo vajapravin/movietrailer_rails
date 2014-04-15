@@ -1,0 +1,18 @@
+<h1>Listing movies_characters</h1>
+<div class="row">
+  <% @characters.each do |character| %>
+    <div class="col-xs-4">
+      <div>
+      <span><%= character.name %></span>
+      <div><%= image_tag character.photo_url, size: "100x100" %></div>
+      <%= link_to 'Show', character %> | <%= link_to 'Edit', edit_character_path(character) %> | <%= link_to 'Destroy', character, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <br>
+      <% if character.movie.present? %>
+        <%= link_to character.movie.title, "/movies/#{character.movie.id}" %>
+      <% end %>
+      </div>      
+    </div>
+  <% end %>
+</div>
+<br>
+<%= link_to 'New Character', new_character_path %>
